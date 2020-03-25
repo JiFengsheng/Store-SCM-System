@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="StoreSCMSystem:war">
+    <output-path>$PROJECT_DIR$/StoreSCMSystem/target</output-path>
+    <root id="archive" name="Store-SCM-System.war">
+      <element id="artifact" artifact-name="StoreSCMSystem:war exploded" />
+    </root>
+  </artifact>
+</component>

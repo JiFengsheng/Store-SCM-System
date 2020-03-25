@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfs.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.jfs.domain.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="createDate" jdbcType="DATE" property="createDate" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="accountNonExpired" jdbcType="INTEGER" property="accountNonExpired" />
+    <result column="accountNonLocked" jdbcType="INTEGER" property="accountNonLocked" />
+    <result column="credentialsNonExpired" jdbcType="INTEGER" property="credentialsNonExpired" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+
+
+  <insert id="insert"  parameterType="com.jfs.domain.User">
+    insert into user (user_id, username, realname, 
+      password, createDate, lastLoginTime, 
+      enabled, accountNonExpired, accountNonLocked, 
+      credentialsNonExpired)
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP},
+      #{enabled,jdbcType=INTEGER}, #{accountNonExpired,jdbcType=INTEGER},
+      #{accountNonLocked,jdbcType=INTEGER},
+      #{credentialsNonExpired,jdbcType=INTEGER})
+
+    <!--select传过来的数据立马传给id -->
+    <selectKey resultType="int" keyProperty="userId" order="AFTER">
+      select @@identity
+    </selectKey>
+
+  </insert>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.jfs.domain.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=DATE},
+      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=INTEGER},
+      accountNonExpired = #{accountnonexpired,jdbcType=INTEGER},
+      accountNonLocked = #{accountnonlocked,jdbcType=INTEGER},
+      credentialsNonExpired = #{credentialsnonexpired,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, username, realname, password, createDate, lastLoginTime, enabled, 
+    accountNonExpired, accountNonLocked, credentialsNonExpired
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, username, realname, password, createDate, lastLoginTime, enabled, 
+    accountNonExpired, accountNonLocked, credentialsNonExpired
+    from user
+  </select>
+
+  <!--查询用户-->
+  <select id="findByUsername" parameterType="string" resultMap="BaseResultMap">
+    SELECT * from user WHERE username = #{value}
+  </select>
+
+
+
+  <select id="selectById" resultMap="ResultMap">
+    select user_id, username, realname, password, createDate, lastLoginTime, enabled,
+    accountNonExpired, accountNonLocked, credentialsNonExpired
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <resultMap id="ResultMap" type="com.jfs.domain.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="createDate" jdbcType="DATE" property="createDate" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="accountNonExpired" jdbcType="INTEGER" property="accountNonExpired" />
+    <result column="accountNonLocked" jdbcType="INTEGER" property="accountNonLocked" />
+    <result column="credentialsNonExpired" jdbcType="INTEGER" property="credentialsNonExpired" />
+    <association property="staff" select="com.jfs.dao.StaffMapper.selectByUserId"
+      column="user_id" fetchType="lazy"></association>
+
+  </resultMap>
+
+  <select id="selectByUsername" parameterType="java.lang.String"
+          resultMap="BaseResultMap">
+    SELECT *
+    FROM user
+    WHERE username LIKE concat('%',#{username},'%')
+  </select>
+
+  <select id="selectByRealname" parameterType="java.lang.String"
+          resultMap="BaseResultMap">
+    SELECT *
+    FROM user
+    WHERE realname LIKE concat('%',#{realname},'%')
+  </select>
+
+  <update id="updateByExample" parameterType="com.jfs.domain.User">
+    update user
+    <set>
+      <trim suffixOverrides=",">
+        <if test="username != null">
+          username = #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="password != null">
+          password = #{password,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfs.dao.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.jfs.domain.Staff">
+    <id column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="native_palce" jdbcType="VARCHAR" property="nativePalce" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="workDate" jdbcType="DATE" property="workdate" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jfs.domain.Staff">
+    insert into staff (staff_id, user_id, real_name, 
+      sex, age, qq, wechat, 
+      telephone, email, native_palce, 
+      place, department_id, pic, 
+      workDate, createTime, updateTime
+      )
+    values (#{staffId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{nativePalce,jdbcType=VARCHAR}, 
+      #{place,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, 
+      #{workdate,jdbcType=DATE},
+      now(), now()
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jfs.domain.Staff">
+    update staff
+    <set>
+      <trim suffixOverrides=",">
+        <if test="userId != null">
+          user_id = #{userId,jdbcType=INTEGER},
+        </if>
+        <if test="realName != null">
+          real_name = #{realName,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null">
+          sex = #{sex,jdbcType=INTEGER},
+        </if>
+        <if test="age != null">
+          age = #{age,jdbcType=INTEGER},
+        </if>
+        <if test="qq != null">
+          qq = #{qq,jdbcType=VARCHAR},
+        </if>
+        <if test="wechat != null">
+          wechat = #{wechat,jdbcType=VARCHAR},
+        </if>
+        <if test="telephone != null">
+          telephone = #{telephone,jdbcType=VARCHAR},
+        </if>
+        <if test="email != null">
+          email = #{email,jdbcType=VARCHAR},
+        </if>
+        <if test="nativePalce != null">
+          native_palce = #{nativePalce,jdbcType=VARCHAR},
+        </if>
+        <if test="place != null">
+          place = #{place,jdbcType=VARCHAR},
+        </if>
+        <if test="departmentId != null">
+          department_id = #{departmentId,jdbcType=INTEGER},
+        </if>
+        <if test="pic != null">
+          pic = #{pic,jdbcType=VARCHAR},
+        </if>
+        <if test="workdate != null">
+          workDate = #{workdate,jdbcType=DATE},
+        </if>
+        <if test="createtime != null">
+          createTime = #{createtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateTime != null">
+          updateTime = now(),
+        </if>
+      </trim>
+    </set>
+
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select staff_id, user_id, real_name, sex, age, qq, wechat, telephone, email, native_palce, 
+    place, department_id, pic, workDate, createTime, updateTime
+    from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select staff_id, user_id, real_name, sex, age, qq, wechat, telephone, email, native_palce, 
+    place, department_id, pic, workDate, createTime, updateTime
+    from staff
+  </select>
+
+
+  <select id="selectById" parameterType="java.lang.String" resultMap="ResultMap">
+    select *
+    from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </select>
+
+  <resultMap id="ResultMap" type="com.jfs.domain.Staff">
+    <id column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="native_palce" jdbcType="VARCHAR" property="nativePalce" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="department_id" jdbcType="INTEGER" javaType="java.lang.Integer" property="departmentId" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="workDate" jdbcType="DATE" property="workdate" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <association property="role" select="com.jfs.dao.RoleMapper.selectByPrimaryKey"
+                 column="department_id" fetchType="lazy"></association>
+
+  </resultMap>
+
+  <select id="selectByDepartmentId" parameterType="java.lang.Integer"
+          resultMap="BaseResultMap">
+    SELECT *
+    FROM staff
+    WHERE department_id = #{departmentId}
+  </select>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer"
+          resultMap="BaseResultMap">
+    SELECT *
+    FROM staff
+    WHERE user_id = #{userId}
+  </select>
+
+  <select id="selectByExample" parameterType="com.jfs.domain.Staff"
+          resultMap="ResultMap">
+    select *
+    from staff
+    <trim prefix="where"  suffixOverrides="and">
+      <if test="staffId != null">
+        staff_id=#{staffId} and
+      </if>
+      <if test="userId != null">
+        user_id=#{userId} and
+      </if>
+      <if test="realName != null">
+        real_name like concat('%',#{realName},'%')and
+      </if>
+      <if test="sex != null">
+        sex=#{sex}and
+      </if>
+      <if test="age != null">
+        age=#{age} and
+      </if>
+      <if test="qq != null">
+        qq=#{qq} and
+      </if>
+      <if test="wechat != null">
+        wechat=#{wechat} and
+      </if>
+
+      <if test="telephone != null">
+        telephone=#{telephone} and
+      </if>
+      <if test="email != null">
+        email=#{email} and
+      </if>
+      <if test="nativePalce != null">
+        native_palce=#{nativePalce} and
+      </if>
+      <if test="place != null">
+        place=#{place} and
+      </if>
+      <if test="departmentId != null">
+        department_id=#{departmentId} and
+      </if>
+      <if test="workdate != null">
+        workDate=#{workdate} and
+      </if>
+
+    </trim>
+  </select>
+
+
+
+</mapper>

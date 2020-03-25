@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../layui/css/layui.css" />
+    <link rel="stylesheet" href="../css/test.css" />
+    <script src="../layui/layui.js"></script>
+
+    <style>
+
+
+
+
+
+
+    </style>
+    <script>
+        layui.use('form', function(){
+            // var form = layui.form;
+            // form.render();
+        });
+
+        function changeCode(){
+
+            var rand = Math.random()*10000;
+            var url = "/SCM/imageCode?rand="+rand;
+            $("#imageCode").attr("src","/SCM/imageCode?rand="+rand);
+            console.log($("#imageCode").attr("src"));
+
+        }
+    </script>
+
+</head>
+<body>
+
+<h1>Hello World!</h1>
+<img src="/SCM/imageCode" onclick="changeCode(this)"
+     style="width: 125px;height: 46px;border: 1px solid #eeeeee;
+                    border-radius: 5px"/>
+</body>
+</html>

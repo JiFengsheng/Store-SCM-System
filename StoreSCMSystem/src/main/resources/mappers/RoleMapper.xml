@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfs.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.jfs.domain.Role">
+    <id column="id" jdbcType="INTEGER" property="id" javaType="java.lang.Integer"/>
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="roleDesc" jdbcType="VARCHAR" property="roledesc" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jfs.domain.Role">
+    insert into role (id, roleName, roleDesc
+      )
+    values (#{id,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{roledesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jfs.domain.Role">
+    update role
+    set roleName = #{rolename,jdbcType=VARCHAR},
+      roleDesc = #{roledesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, roleName, roleDesc
+    from role
+    where id = #{id}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, roleName, roleDesc
+    from role
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer"
+          resultMap="ResultMap">
+    select *
+    from role
+    where id = #{id}
+  </select>
+
+  <resultMap id="ResultMap" type="com.jfs.domain.Role">
+    <id column="id" jdbcType="INTEGER" property="id" javaType="java.lang.Integer"/>
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="roleDesc" jdbcType="VARCHAR" property="roledesc" />
+
+    <collection property="staffs" select="com.jfs.dao.StaffMapper.selectByDepartmentId"
+                 column="id" fetchType="lazy"></collection>
+
+  </resultMap>
+
+</mapper>
