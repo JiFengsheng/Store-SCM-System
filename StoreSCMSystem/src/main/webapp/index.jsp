@@ -18,6 +18,10 @@
 <h2>Hello Wold!</h2>
 <h3>欢迎用户，${username}</h3>
 <h3>以下是网站的功能</h3>
+
+
+
+
 <%--<security:authorize access="hasAuthority('ROLE_ADD_PRODUCT')">
 <a href="${pageContext.request.contextPath}/templates.product/add">商品添加</a>
 </security:authorize>
