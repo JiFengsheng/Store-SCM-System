@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../libs/vue.min.js"> </script>
+    <script src="../../libs/bootstrap.min.js"></script>
+    <script src="../../layui/layui.js"></script>
+    <style type="text/css">
+        .h{
+
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            background-color: #e2e2e2;
+            padding-left: 15px;
+        }
+        .content{
+            padding: 10px;
+        }
+        .fg{
+            margin-top: 10px;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+
+
+    </script>
+
+</head>
+<body>
+
+<div id="staff_add">
+
+    <div class="h">
+        <a >员工添加</a>
+    </div>
+    <div class="content">
+
+        <form class="form-inline">
+
+            <div class="form-group">
+                <label for="name" >用户名:</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="name"  name="name"/>
+            </div>
+            <br/>
+            <div class="form-group fg">
+                <label for="realname">真实名:</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="realname" name="realname"/>
+            </div>
+            <br/>
+            <div class="form-group fg">
+                <label for="sex">性别:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="sex" class="form-control" name="sex">
+                    <option value="0">请选择</option>
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group fg">
+                <label for="age">年龄:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="age" name="age"/>
+            </div>
+            <br>
+            <div class="form-group fg">
+                <label for="QQ">QQ:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="QQ" name="QQ"/>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div class="form-group fg">
+                <label for="wechat">微信:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="wechat" name="wechat"/>
+            </div>
+            <br>
+            <div class="form-group fg">
+                <label for="phone">电话:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="phone" name="phone"/>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div class="form-group fg">
+                <label for="email">邮箱:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="email" name="email"/>
+            </div>
+            <br>
+            <div class="form-group fg">
+                <label for="nativePlace">籍贯:</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control"
+                       id="nativePlace" name="nativePlace"/>
+            </div>
+            <br>
+            <div class="form-group fg" style="width: 100%;">
+                <label for="place"
+                       >详细地址:
+
+                </label>
+                <input type="text" class="form-control"
+                       id="place" name="place"
+                       style="min-width: 80%"/>
+
+            </div>
+
+
+        </form>
+
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

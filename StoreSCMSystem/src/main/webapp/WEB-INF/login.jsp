@@ -202,6 +202,14 @@
 
 
 
+<script src="${pageContext.request.contextPath}/js/effect/line_effects.js"></script>
+<script src="${pageContext.request.contextPath}/js/effect/activate-power-mode.js"></script>
+<script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input',POWERMODE);
+</script>
+
 
 
 </body>

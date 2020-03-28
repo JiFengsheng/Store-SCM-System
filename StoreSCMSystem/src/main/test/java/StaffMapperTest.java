@@ -1,5 +1,6 @@
 import com.jfs.dao.StaffMapper;
 import com.jfs.domain.Staff;
+import com.jfs.service.IStaffService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class StaffMapperTest {
 
     @Autowired
     private StaffMapper staffMapper;
+
+    @Autowired
+    private IStaffService staffService;
 
     @Test
     public void test01(){
@@ -46,6 +50,15 @@ public class StaffMapperTest {
         }
     }
 
+    @Test
+    public void test05(){
+
+        int i = staffService.updatePic("202003280202",
+                "017aa5e2-6ab2-4699-ae3d-e9f614f6df36.jpg");
+        System.out.println(i);
+
+
+    }
 
 
 

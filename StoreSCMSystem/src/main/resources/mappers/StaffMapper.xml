@@ -84,14 +84,15 @@
         <if test="createtime != null">
           createTime = #{createtime,jdbcType=TIMESTAMP},
         </if>
-        <if test="updateTime != null">
+
           updateTime = now(),
-        </if>
+
       </trim>
     </set>
-
     where staff_id = #{staffId,jdbcType=VARCHAR}
   </update>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select staff_id, user_id, real_name, sex, age, qq, wechat, telephone, email, native_palce, 
     place, department_id, pic, workDate, createTime, updateTime

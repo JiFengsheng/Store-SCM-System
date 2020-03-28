@@ -2,6 +2,9 @@ package com.jfs.controller;
 
 import com.jfs.domain.User;
 import com.jfs.service.IUserService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 @Controller
 public class MainController {
 
     @Autowired
     private IUserService IUserService;
+
+    private Logger logger = LogManager.getLogger(MainController.class);
 
     /*
      * 登录页面
@@ -31,7 +37,6 @@ public class MainController {
 
     }
 
-
     /*
      * 生成验证码
      * */
@@ -40,7 +45,6 @@ public class MainController {
         System.out.println("/imageCode");
         return "imageCode";
     }
-
     /*
      * 主页
      * */
@@ -55,11 +59,12 @@ public class MainController {
                 UserDetails userDetails = (UserDetails)principal;
                 String username = userDetails.getUsername();
                 User user = (User) userDetails;
+                logger.info(user);
                 model.setAttribute("username",username);
                 model.setAttribute("user",user);
             }
         }
-//        response.addHeader("REFRESH", "3;URL=./index");
+
         return "index";
     }
 

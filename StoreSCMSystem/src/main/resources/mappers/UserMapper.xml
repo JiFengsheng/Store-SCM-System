@@ -37,7 +37,6 @@
 
   </insert>
 
-
   <update id="updateByPrimaryKey" parameterType="com.jfs.domain.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
@@ -64,11 +63,9 @@
   </select>
 
   <!--查询用户-->
-  <select id="findByUsername" parameterType="string" resultMap="BaseResultMap">
+  <select id="findByUsername" parameterType="string" resultMap="ResultMap">
     SELECT * from user WHERE username = #{value}
   </select>
-
-
 
   <select id="selectById" resultMap="ResultMap">
     select user_id, username, realname, password, createDate, lastLoginTime, enabled,

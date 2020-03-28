@@ -5,7 +5,11 @@ import com.jfs.dao.PermissionMapper;
 import com.jfs.dao.UserMapper;
 import com.jfs.domain.Permission;
 import com.jfs.domain.User;
-import org.apache.log4j.Logger;
+import com.jfs.exception.UserNotExistException;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +24,7 @@ import java.util.List;
 
 public class MyUserDetailService implements UserDetailsService{
 
-    private Logger logger = Logger.getLogger(MyUserDetailService.class);
+    private Logger logger = LogManager.getLogger(MyUserDetailService.class);
 
 
     @Autowired
@@ -53,7 +57,7 @@ public class MyUserDetailService implements UserDetailsService{
 
         }
         if(user==null){
-            throw new BadCredentialsException("帐号不存在，请重新输入");
+            throw new UserNotExistException("帐号不存在，请重新输入");
         }
 
         return user;

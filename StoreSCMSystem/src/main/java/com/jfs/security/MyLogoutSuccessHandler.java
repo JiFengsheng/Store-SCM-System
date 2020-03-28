@@ -1,7 +1,9 @@
 package com.jfs.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
@@ -13,7 +15,7 @@ import java.io.IOException;
 
 public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    Logger logger = LoggerFactory.getLogger(MyLogoutSuccessHandler.class);
+    Logger logger = LogManager.getLogger(MyLogoutSuccessHandler.class);
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -22,7 +24,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         session.setAttribute("logout","true");
 
 
-        logger.info("登出成功！！！");
+        logger.info("{info}:登出成功！！！");
         int v = (int) (Math.random() * 10000);
         response.sendRedirect("./userLogin?ran="+v);
     }

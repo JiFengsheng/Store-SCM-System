@@ -36,7 +36,7 @@
                                                     />
 
         <!--错误处理-->
-        <security:access-denied-handler error-page="/error"/>
+        <security:access-denied-handler  ref="myAccessDeniedHandler"/>
 
         <security:csrf disabled="true" />
 
@@ -51,11 +51,14 @@
                          invalidate-session="true"
                          success-handler-ref="myLogoutSuccessHandler"/>
 
+
+
+
     </security:http>
 
-    <security:authentication-manager>
+    <security:authentication-manager >
 
-        <security:authentication-provider user-service-ref="myUserDetailService">
+        <security:authentication-provider user-service-ref="myUserDetailService" >
             <!--<security:user-service>
                 <security:user name="aaa" password="123" authorities="ROLE_USER"/>
             </security:user-service>-->
@@ -73,6 +76,9 @@
     <bean id="myAuthenticationFailureHandler" class="com.jfs.security.MyAuthenticationFailureHandler"/>
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <bean id="myLogoutSuccessHandler" class="com.jfs.security.MyLogoutSuccessHandler"/>
+
+    <bean id="myAccessDeniedHandler" class="com.jfs.security.MyAccessDeniedHandler"/>
+
     <bean id="imageCodeAuthenticationFilter" class="com.jfs.filter.ImageCodeAuthenticationFilter">
         <property name="authenticationFailureHandler" ref="myAuthenticationFailureHandler"/>
     </bean>

@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import com.jfs.dao.UserMapper;
 import com.jfs.domain.User;
 
@@ -25,7 +26,11 @@ public class UserMapperTest {
     @Test
     public void testFindByUsername(){
         User aaa = userMapper.findByUsername("jfs");
-        System.out.println(aaa);
+//        System.out.println(aaa);
+        String s = JSON.toJSONString(aaa);
+        System.out.println(s);
+
+
     }
 
 
@@ -36,7 +41,7 @@ public class UserMapperTest {
 //        user.setUsername("admin");
         //哈希算法+盐值
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode("123"));
+        user.setPassword(passwordEncoder.encode("111"));
         userMapper.updateByExample(user);
 
 
